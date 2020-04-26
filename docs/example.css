@@ -1,0 +1,84 @@
+:root {
+  --oc-gray-0: #f8f9fa;
+  --oc-gray-1: #f1f3f5;
+  --oc-gray-2: #e9ecef;
+  --oc-gray-3: #dee2e6;
+  --oc-gray-4: #ced4da;
+  --oc-gray-5: #adb5bd;
+  --oc-gray-6: #868e96;
+  --oc-gray-7: #495057;
+  --oc-gray-8: #343a40;
+  --oc-gray-9: #212529;
+
+  --oc-orange-5: #ff922b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  color: var(--oc-gray-1);
+  font-family: system-ui, Arial;
+}
+
+html, body {
+  background-color: var(--oc-gray-9);
+}
+
+.title {
+  margin-inline-start: 12px;
+  margin-block-start: 7px;
+}
+
+.calculator {
+  width: 400px;
+  margin: 10px;
+  margin-block-start: 14px;
+  border-radius: 4px;
+  border: 2px solid var(--oc-gray-7);
+}
+
+.output {
+  max-width: 100%;
+  border: 2px solid var(--oc-gray-7);
+  margin: 7px;
+}
+
+.output .text-wrapper {
+  margin: 4px;
+}
+
+.buttons {
+  display: grid;
+  grid-gap: 10px;
+  margin: 7px;
+}
+
+.button {
+  display: inline-block;
+  padding-inline-start: 12px;
+  padding-inline-end: 12px;
+  padding-block-start: 8px;
+  padding-block-end: 8px;
+  background-color: var(--oc-gray-7);
+  border-radius: 4px;
+  transition: 0.1s ease-in-out;
+  user-select: none;
+}
+
+.button:hover, .operation-button:hover {
+  background-color: var(--oc-gray-6);
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: 0.1s ease-in-out;
+}
+
+.button:active, .operation-button:active {
+  transform: scale(0.99);
+  transition: 0.1s ease-in-out;
+}
+
+.operation-button {
+  margin-inline-end: 4px;
+}
