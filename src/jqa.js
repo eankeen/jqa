@@ -22,13 +22,21 @@ class JqaClass {
     }
   }
 
+  // custom
   raw() { return this.el }
+
+  // attributes
   attr(attributeName) { return this.el.getAttribute(attributeName) }
   html() { return this.el.children }
   prop() { return this.el[propName] }
   removeAttr (attributeName) {}
   removeProp (propName) {}
   val() { this.el.value }
+
+  // manipulation
+
+
+  // css
   addClass(className) { return this.el.classList.add(className) }
   css() {}
   hasClass(className) { return this.el.classList.contains(className) }
@@ -73,35 +81,45 @@ class JqaClass {
     return this.el.getBoundingClientRect().width;
   }
 
-  // effects
-  fadeIn() {}
-
-  click(firstArg, secondArg) {
-    if (isFunction(firstArg)) return this.el.addEventListener('click', firstArg);
-    if (isObject(firstArg))
-      return this.el.addEventListener('click', () => secondArg(firstArg));
-    if (isUndefined(firstArg)) this.el.click();
-  }
-  text() {
-    return this.el.textContent;
-  }
-
-  // dimensions
-  height(newHeight) {
-    if (isFunction(newHeight)) {
-      this.el.style.height = newHeight(this.el.getClientRects().clientHeight);
-    }
-    if (newHeight) {
-      this.el.style.height = newHeight;
-    } else {
-      this.el.getClientRects().clientHeight;
-    }
-  }
-
   // effect
   hide() {}
   show() {}
   toggle() {}
+
+  // util
+  static isArrayLike(value) {
+    return value != null && typeof value !== 'function' && isLength(value.length)
+  }
+  static isFunction(value) {
+    return typeof value === 'function';
+  }
+  static isNumeric() {
+    return (
+      typeof value === 'number' ||
+      (isObjectLike(value) && getTag(value) == '[object Number]')
+    );
+  }
+  static isPlainObject(value) {
+    if (!isObjectLike(value) || getTag(value) != '[object Object]') {
+      return false
+    }
+    if (Object.getPrototypeOf(value) === null) {
+      return true
+    }
+    let proto = value
+    while (Object.getPrototypeOf(proto) !== null) {
+      proto = Object.getPrototypeOf(proto)
+    }
+    return Object.getPrototypeOf(value) === proto
+  }
+  static isWindow(obj) {
+    return obj != null && obj === obj.window;
+  }
+  static isXMLDoc(elem) {
+		let namespace = elem.namespaceURI,
+			docElem = (elem.ownerDocument || elem).documentElement;
+		return !rhtmlSuffix.test( namespace || docElem && docElem.nodeName || "HTML" );
+	}
 
   // events
   blur(fn) { this.el.addEventListener('blur', fn) }
@@ -116,7 +134,8 @@ class JqaClass {
   focus(fn) { this.el.addEventListener('focus', fn) }
   focusin(fn) { this.el.addEventListener('focusin', fn) }
   focusout(fn) { this.el.addEventListener('focusout', fn) }
-  hover(fn) { this.el.addEventListener('hover', fn) }
+  hover(fn) { this.el.addEventListener('mouseenter', fn); this.el.addEventListener(
+    'mouseleave', fn); }
   keydown(fn) { this.el.addEventListener('keydown', fn) }
   keypress(fn) { this.el.addEventListener('keypress', fn) }
   keyup(fn) { this.el.addEventListener('keyup', fn) }
@@ -128,8 +147,8 @@ class JqaClass {
   mouseout(fn) { this.el.addEventListener('mouseout', fn) }
   mouseover(fn) { this.el.addEventListener('mouseover', fn) }
   mouseup(fn) { this.el.addEventListener('mouseup', fn) }
-  off(fn) { this.el.addEventListener('off', fn) }
-  on(fn) { this.el.addEventListener('on', fn) }
+  off(event, fn) { this.el.removeEventListener(event, fn); }
+  on(event, fn) { this.el.addEventListener(event, fn) }
   resize(fn) { this.el.addEventListener('resize', fn) }
   scroll(fn) { this.el.addEventListener('scroll', fn) }
   select(fn) { this.el.addEventListener('select', fn) }

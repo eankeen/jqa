@@ -89,18 +89,12 @@ Jqa will / supports the following query methods
   - toggle()
 
 - Util
-  -  isArray()
-  -  inArray()
-  -  isEmptyObject()
+  -  isArrayLike()
   -  isFunction()
   -  isNumeric()
   -  isPlainObject()
   -  isWindow()
   -  isXMLDoc()
-  -  map()
-  -  merge()
-  -  noop()
-  -  now()
 
 - Events
   - bind
@@ -133,6 +127,3 @@ Jqa will / supports the following query methods
   - submit
   - unbind
   - unload
-
-- Other
-  - jQuery.htmlPrefilter
