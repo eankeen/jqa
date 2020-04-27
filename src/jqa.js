@@ -1,14 +1,28 @@
-import _ from 'lodash'
+// TODO: golf
+function isFunction(value) {
+  typeof value === 'function';
+}
+
+function isObject(value) {
+  const type = typeof value;
+  return value != null && (type === 'object' || type === 'function');
+}
+
+function isUndefined(value) {
+  return value === undefined
+}
 
 class JqaClass {
   constructor(domElement) {
     if (domElement instanceof HTMLElement) {
       this.el = domElement
     } else {
-      this.el = document.querySelector(domElement)
+      let f = document.querySelectorAll(domElement)
+      this.el = f.length === 1 ? f[0] : f
     }
   }
 
+  raw() { return this.el }
   attr(attributeName) { return this.el.getAttribute(attributeName) }
   html() { return this.el.children }
   prop() { return this.el[propName] }
@@ -63,10 +77,10 @@ class JqaClass {
   fadeIn() {}
 
   click(firstArg, secondArg) {
-    if (_.isFunction(firstArg)) return this.el.addEventListener('click', firstArg);
-    if (_.isObject(firstArg))
+    if (isFunction(firstArg)) return this.el.addEventListener('click', firstArg);
+    if (isObject(firstArg))
       return this.el.addEventListener('click', () => secondArg(firstArg));
-    if (_.isUndefined(firstArg)) this.el.click();
+    if (isUndefined(firstArg)) this.el.click();
   }
   text() {
     return this.el.textContent;
@@ -74,7 +88,7 @@ class JqaClass {
 
   // dimensions
   height(newHeight) {
-    if (_.isFunction(newHeight)) {
+    if (isFunction(newHeight)) {
       this.el.style.height = newHeight(this.el.getClientRects().clientHeight);
     }
     if (newHeight) {
@@ -128,6 +142,6 @@ class JqaClass {
   static escapeSelector = (selector) => CSS.escape(selector)
 }
 
-const Jqa = (domElement) => new JqaClass(domElement)
 
-export { Jqa }
+// TODO ?.
+export const Jqa = (domElement) => new JqaClass(domElement)

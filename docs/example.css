@@ -67,18 +67,18 @@ html, body {
   user-select: none;
 }
 
-.button:hover, .operation-button:hover {
+.button:hover, .button-operation:hover {
   background-color: var(--oc-gray-6);
   cursor: pointer;
   transform: scale(1.02);
   transition: 0.1s ease-in-out;
 }
 
-.button:active, .operation-button:active {
+.button:active, .button-operation:active {
   transform: scale(0.99);
   transition: 0.1s ease-in-out;
 }
 
-.operation-button {
+.button-operation {
   margin-inline-end: 4px;
 }
