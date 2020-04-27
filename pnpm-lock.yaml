@@ -1,6 +1,7 @@
 devDependencies:
   '@babel/core': 7.9.0
   '@babel/plugin-transform-modules-commonjs': 7.9.0_@babel+core@7.9.0
+  '@rollup/plugin-typescript': 4.1.1_rollup@2.7.2+typescript@3.8.3
   babel-jest: 25.4.0_@babel+core@7.9.0
   cypress: 4.4.1
   gulp: 4.0.2
@@ -9,6 +10,7 @@ devDependencies:
   jquery: 3.5.0
   rollup: 2.7.2
   rollup-plugin-terser: 5.3.0_rollup@2.7.2
+  typescript: 3.8.3
 lockfileVersion: 5.1
 packages:
   /@babel/code-frame/7.8.3:
@@ -561,6 +563,34 @@ packages:
       node: '>= 8.3'
     resolution:
       integrity: sha512-XBeaWNzw2PPnGW5aXvZt3+VO60M+34RY3XDsCK5tW7kyj3RK0XClRutCfjqcBuaR2aBQTbluEDME9b5MB9UAPw==
+  /@rollup/plugin-typescript/4.1.1_rollup@2.7.2+typescript@3.8.3:
+    dependencies:
+      '@rollup/pluginutils': 3.0.9_rollup@2.7.2
+      resolve: 1.17.0
+      rollup: 2.7.2
+      typescript: 3.8.3
+    dev: true
+    engines:
+      node: '>=8.0.0'
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0
+      tslib: '*'
+      typescript: '>=2.1.0'
+    resolution:
+      integrity: sha512-KYZCn1Iw9hZWkeEPqPs5YjlmvSjR7UdezVca8z0e8rm/29wU24UD9Y4IZHhnc9tm749hzsgBTiOUxA85gfShEQ==
+  /@rollup/pluginutils/3.0.9_rollup@2.7.2:
+    dependencies:
+      '@types/estree': 0.0.39
+      estree-walker: 1.0.1
+      micromatch: 4.0.2
+      rollup: 2.7.2
+    dev: true
+    engines:
+      node: '>= 8.0.0'
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0
+    resolution:
+      integrity: sha512-TLZavlfPAZYI7v33wQh4mTP6zojne14yok3DNSLcjoG/Hirxfkonn6icP5rrNWRn8nZsirJBFFpijVOJzkUHDg==
   /@samverschueren/stream-to-observable/0.3.0:
     dependencies:
       any-observable: 0.3.0
@@ -627,6 +657,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
+  /@types/estree/0.0.39:
+    dev: true
+    resolution:
+      integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
   /@types/istanbul-lib-coverage/2.0.1:
     dev: true
     resolution:
@@ -1909,6 +1943,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==
+  /estree-walker/1.0.1:
+    dev: true
+    resolution:
+      integrity: sha512-1fMXF3YP4pZZVozF8j/ZLfvnR8NSIljt56UhbZ5PeeDmmGHpgpdwQt7ITlGvYaQukCvuBRMLEiKiYC+oeIg4cg==
   /esutils/2.0.3:
     dev: true
     engines:
@@ -5590,6 +5628,13 @@ packages:
     dev: true
     resolution:
       integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+  /typescript/3.8.3:
+    dev: true
+    engines:
+      node: '>=4.2.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
   /unc-path-regex/0.1.2:
     dev: true
     engines:
@@ -5998,6 +6043,7 @@ packages:
 specifiers:
   '@babel/core': ^7.9.0
   '@babel/plugin-transform-modules-commonjs': ^7.9.0
+  '@rollup/plugin-typescript': ^4.1.1
   babel-jest: ^25.4.0
   cypress: ^4.4.1
   gulp: ^4.0.2
@@ -6006,3 +6052,4 @@ specifiers:
   jquery: ^3.5.0
   rollup: ^2.7.2
   rollup-plugin-terser: ^5.3.0
+  typescript: ^3.8.3

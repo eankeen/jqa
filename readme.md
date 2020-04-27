@@ -23,13 +23,14 @@ git clone https://github.com/eankeen/jqa
 cd jqa
 pnpm i
 pnpm run test
+```
 
 ## Interface Compatability
 
-```txt
+```sh
 Jqa will / supports the following query methods
 
--  Attributes
+- Attributes
    - attr()
    - html()
    - prop()
@@ -89,41 +90,38 @@ Jqa will / supports the following query methods
   - toggle()
 
 - Util
-  -  isArrayLike()
-  -  isFunction()
-  -  isNumeric()
-  -  isPlainObject()
   -  isWindow()
   -  isXMLDoc()
 
 - Events
-  - bind
-  - blur
-  - change
-  - click
-  - contextmenu
-  - dblclick
-  - error
-  - focus
-  - focusin
-  - focusout
-  - hover
-  - keydown
-  - keypress
-  - keyup
-  - load
-  - mousedown
-  - mouseenter
-  - mouseleave
-  - mousemove
-  - mouseout
-  - mouseover
-  - mouseup
-  - off
-  - on
-  - resize
-  - scroll
-  - select
-  - submit
-  - unbind
-  - unload
+  - bind()
+  - blur()
+  - change()
+  - click()
+  - contextmenu()
+  - dblclick()
+  - error()
+  - focus()
+  - focusin()
+  - focusout()
+  - hover()
+  - keydown()
+  - keypress()
+  - keyup()
+  - load()
+  - mousedown()
+  - mouseenter()
+  - mouseleave()
+  - mousemove()
+  - mouseout()
+  - mouseover()
+  - mouseup()
+  - off()
+  - on()
+  - resize()
+  - scroll()
+  - select()
+  - submit()
+  - unbind()
+  - unload()
+```

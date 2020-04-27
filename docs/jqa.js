@@ -1,1 +1,1 @@
-../src/jqa.js
+../dist/index.js

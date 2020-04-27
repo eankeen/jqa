@@ -12,8 +12,14 @@ function isUndefined(value) {
   return value === undefined
 }
 
+interface JqaClass {
+  el: HTMLElement
+}
+
 class JqaClass {
   constructor(domElement) {
+    this.el
+
     if (domElement instanceof HTMLElement) {
       this.el = domElement
     } else {
@@ -28,10 +34,10 @@ class JqaClass {
   // attributes
   attr(attributeName) { return this.el.getAttribute(attributeName) }
   html() { return this.el.children }
-  prop() { return this.el[propName] }
+  prop(propName) { return this.el[propName] }
   removeAttr (attributeName) {}
   removeProp (propName) {}
-  val() { this.el.value }
+  // val(value) { this.el.value }
 
   // manipulation
 
@@ -52,30 +58,29 @@ class JqaClass {
 
   // dimensions
   innerHeight(newWidth) {
-    let computedStyle = window.getComputedStyle(el);
-    console.log(el);
+    let computedStyle = window.getComputedStyle(this.el);
     return (
       this.el.getBoundingClientRect().height -
-      computedStyle.borderTop -
-      computedStyle.borderBottom
+      parseInt(computedStyle.borderTop) -
+      parseInt(computedStyle.borderBottom)
     );
   }
   height(newHeight) {
-    return window.getComputedStyle(el).height;
+    return window.getComputedStyle(this.el).height;
   }
   outerHeight(newHeight) {
     return this.el.getBoundingClientRect().height;
   }
   innerWidth(newWidth) {
-    let computedStyle = window.getComputedStyle(el);
+    let computedStyle = window.getComputedStyle(this.el);
     return (
-      this.el.getBoundingClientRect() -
-      computedStyle.borderLeft -
-      computedStyle.borderRight
+      this.el.getBoundingClientRect().width -
+      parseInt(computedStyle.borderLeft) -
+      parseInt(computedStyle.borderRight)
     );
   }
   width(newWidth) {
-    return window.getComputedStyle(el).width;
+    return window.getComputedStyle(this.el).width;
   }
   outerWidth(newWidth) {
     return this.el.getBoundingClientRect().width;
@@ -87,45 +92,18 @@ class JqaClass {
   toggle() {}
 
   // util
-  static isArrayLike(value) {
-    return value != null && typeof value !== 'function' && isLength(value.length)
-  }
-  static isFunction(value) {
-    return typeof value === 'function';
-  }
-  static isNumeric() {
-    return (
-      typeof value === 'number' ||
-      (isObjectLike(value) && getTag(value) == '[object Number]')
-    );
-  }
-  static isPlainObject(value) {
-    if (!isObjectLike(value) || getTag(value) != '[object Object]') {
-      return false
-    }
-    if (Object.getPrototypeOf(value) === null) {
-      return true
-    }
-    let proto = value
-    while (Object.getPrototypeOf(proto) !== null) {
-      proto = Object.getPrototypeOf(proto)
-    }
-    return Object.getPrototypeOf(value) === proto
-  }
   static isWindow(obj) {
     return obj != null && obj === obj.window;
   }
   static isXMLDoc(elem) {
 		let namespace = elem.namespaceURI,
 			docElem = (elem.ownerDocument || elem).documentElement;
-		return !rhtmlSuffix.test( namespace || docElem && docElem.nodeName || "HTML" );
+		return !/HTML$/i.test( namespace || docElem && docElem.nodeName || "HTML" );
 	}
 
   // events
   blur(fn) { this.el.addEventListener('blur', fn) }
-  change(fn) { this.el.addEventListener('change', fn) }
   bind(fn) { this.el.addEventListener('bind', fn) }
-  blur(fn) { this.el.addEventListener('blur', fn) }
   change(fn) { this.el.addEventListener('change', fn) }
   click(fn) { this.el.addEventListener('click', fn) }
   contextmenu(fn) { this.el.addEventListener('contextmenu', fn) }
