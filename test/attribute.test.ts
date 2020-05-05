@@ -48,10 +48,10 @@ describe('test attributes', () => {
 
 
 
-  test('.text()', () => {
-    const myText = $$('.outer').text();
-    const text = $('.outer').text();
+  // test('.text()', () => {
+  //   const myText = $$('.outer').text();
+  //   const text = $('.outer').text();
 
-    expect(myText).toBe(text);
-  });
+  //   expect(myText).toBe(text);
+  // });
 })

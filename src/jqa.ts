@@ -1,23 +1,25 @@
 // TODO: golf
-function isFunction(value) {
+function isFunction(value: any) {
   typeof value === 'function';
 }
 
-function isObject(value) {
+function isObject(value: any) {
   const type = typeof value;
   return value != null && (type === 'object' || type === 'function');
 }
 
-function isUndefined(value) {
+function isUndefined(value: any) {
   return value === undefined
 }
 
 interface JqaClass {
-  el: HTMLElement
+  el: Element | NodeListOf<Element> | HTMLElement
 }
 
+type cb = (ev?: EventTarget) => any | void
+
 class JqaClass {
-  constructor(domElement) {
+  constructor(domElement: HTMLElement | string) {
     this.el
 
     if (domElement instanceof HTMLElement) {
@@ -32,22 +34,22 @@ class JqaClass {
   raw() { return this.el }
 
   // attributes
-  attr(attributeName) { return this.el.getAttribute(attributeName) }
+  attr(attributeName: string) { return this.el.getAttribute(attributeName) }
   html() { return this.el.children }
-  prop(propName) { return this.el[propName] }
-  removeAttr (attributeName) {}
-  removeProp (propName) {}
+  prop(propName: string) { return this.el[propName] }
+  removeAttr (attributeName: string) {}
+  removeProp (propName: string) {}
   // val(value) { this.el.value }
 
   // manipulation
 
 
   // css
-  addClass(className) { return this.el.classList.add(className) }
+  addClass(className: string) { return this.el.classList.add(className) }
   css() {}
-  hasClass(className) { return this.el.classList.contains(className) }
-  removeClass(className) { return this.el.classList.remove(className) }
-  toggleClass(className) { return this.el.classList.toggle(className) }
+  hasClass(className: string) { return this.el.classList.contains(className) }
+  removeClass(className: string) { return this.el.classList.remove(className) }
+  toggleClass(className: string) { return this.el.classList.toggle(className) }
 
   // offset
   offset() {}
@@ -57,7 +59,7 @@ class JqaClass {
   scrollTop() {}
 
   // dimensions
-  innerHeight(newWidth) {
+  innerHeight(newWidth: string) {
     let computedStyle = window.getComputedStyle(this.el);
     return (
       this.el.getBoundingClientRect().height -
@@ -65,13 +67,13 @@ class JqaClass {
       parseInt(computedStyle.borderBottom)
     );
   }
-  height(newHeight) {
+  height(newHeight: string) {
     return window.getComputedStyle(this.el).height;
   }
-  outerHeight(newHeight) {
+  outerHeight(newHeight: string) {
     return this.el.getBoundingClientRect().height;
   }
-  innerWidth(newWidth) {
+  innerWidth(newWidth: string) {
     let computedStyle = window.getComputedStyle(this.el);
     return (
       this.el.getBoundingClientRect().width -
@@ -79,10 +81,10 @@ class JqaClass {
       parseInt(computedStyle.borderRight)
     );
   }
-  width(newWidth) {
+  width(newWidth: string) {
     return window.getComputedStyle(this.el).width;
   }
-  outerWidth(newWidth) {
+  outerWidth(newWidth: string) {
     return this.el.getBoundingClientRect().width;
   }
 
@@ -92,53 +94,53 @@ class JqaClass {
   toggle() {}
 
   // util
-  static isWindow(obj) {
+  static isWindow(obj: any) {
     return obj != null && obj === obj.window;
   }
-  static isXMLDoc(elem) {
+  static isXMLDoc(elem: any) {
 		let namespace = elem.namespaceURI,
 			docElem = (elem.ownerDocument || elem).documentElement;
 		return !/HTML$/i.test( namespace || docElem && docElem.nodeName || "HTML" );
 	}
 
   // events
-  blur(fn) { this.el.addEventListener('blur', fn) }
-  bind(fn) { this.el.addEventListener('bind', fn) }
-  change(fn) { this.el.addEventListener('change', fn) }
-  click(fn) { this.el.addEventListener('click', fn) }
-  contextmenu(fn) { this.el.addEventListener('contextmenu', fn) }
-  dblclick(fn) { this.el.addEventListener('dblclick', fn) }
-  error(fn) { this.el.addEventListener('error', fn) }
-  focus(fn) { this.el.addEventListener('focus', fn) }
-  focusin(fn) { this.el.addEventListener('focusin', fn) }
-  focusout(fn) { this.el.addEventListener('focusout', fn) }
-  hover(fn) { this.el.addEventListener('mouseenter', fn); this.el.addEventListener(
+  blur(fn: cb) { this.el.addEventListener('blur', fn) }
+  bind(fn: cb) { this.el.addEventListener('bind', fn) }
+  change(fn: cb) { this.el.addEventListener('change', fn) }
+  click(fn: cb) { this.el.addEventListener('click', fn) }
+  contextmenu(fn: cb) { this.el.addEventListener('contextmenu', fn) }
+  dblclick(fn: cb) { this.el.addEventListener('dblclick', fn) }
+  error(fn: cb) { this.el.addEventListener('error', fn) }
+  focus(fn: cb) { this.el.addEventListener('focus', fn) }
+  focusin(fn: cb) { this.el.addEventListener('focusin', fn) }
+  focusout(fn: cb) { this.el.addEventListener('focusout', fn) }
+  hover(fn: cb) { this.el.addEventListener('mouseenter', fn); this.el.addEventListener(
     'mouseleave', fn); }
-  keydown(fn) { this.el.addEventListener('keydown', fn) }
-  keypress(fn) { this.el.addEventListener('keypress', fn) }
-  keyup(fn) { this.el.addEventListener('keyup', fn) }
-  load(fn) { this.el.addEventListener('load', fn) }
-  mousedown(fn) { this.el.addEventListener('mousedown', fn) }
-  mouseenter(fn) { this.el.addEventListener('mouseenter', fn) }
-  mouseleave(fn) { this.el.addEventListener('mouseleave', fn) }
-  mousemove(fn) { this.el.addEventListener('mousemove', fn) }
-  mouseout(fn) { this.el.addEventListener('mouseout', fn) }
-  mouseover(fn) { this.el.addEventListener('mouseover', fn) }
-  mouseup(fn) { this.el.addEventListener('mouseup', fn) }
-  off(event, fn) { this.el.removeEventListener(event, fn); }
-  on(event, fn) { this.el.addEventListener(event, fn) }
-  resize(fn) { this.el.addEventListener('resize', fn) }
-  scroll(fn) { this.el.addEventListener('scroll', fn) }
-  select(fn) { this.el.addEventListener('select', fn) }
-  submit(fn) { this.el.addEventListener('submit', fn) }
-  unbind(fn) { this.el.addEventListener('unbind', fn) }
-  unload(fn) { this.el.addEventListener('unload', fn) }
+  keydown(fn: cb) { this.el.addEventListener('keydown', fn) }
+  keypress(fn: cb) { this.el.addEventListener('keypress', fn) }
+  keyup(fn: cb) { this.el.addEventListener('keyup', fn) }
+  load(fn: cb) { this.el.addEventListener('load', fn) }
+  mousedown(fn: cb) { this.el.addEventListener('mousedown', fn) }
+  mouseenter(fn: cb) { this.el.addEventListener('mouseenter', fn) }
+  mouseleave(fn: cb) { this.el.addEventListener('mouseleave', fn) }
+  mousemove(fn: cb) { this.el.addEventListener('mousemove', fn) }
+  mouseout(fn: cb) { this.el.addEventListener('mouseout', fn) }
+  mouseover(fn: cb) { this.el.addEventListener('mouseover', fn) }
+  mouseup(fn: cb) { this.el.addEventListener('mouseup', fn) }
+  off(event: Event, fn: cb) { this.el.removeEventListener(event, fn); }
+  on(event: Event, fn: cb) { this.el.addEventListener(event, fn) }
+  resize(fn: cb) { this.el.addEventListener('resize', fn) }
+  scroll(fn: cb) { this.el.addEventListener('scroll', fn) }
+  select(fn: cb) { this.el.addEventListener('select', fn) }
+  submit(fn: cb) { this.el.addEventListener('submit', fn) }
+  unbind(fn: cb) { this.el.addEventListener('unbind', fn) }
+  unload(fn: cb) { this.el.addEventListener('unload', fn) }
 
   // static methods
   static cssNumber = function() {}
-  static escapeSelector = (selector) => CSS.escape(selector)
+  static escapeSelector = (selector: string) => CSS.escape(selector)
 }
 
 
 // TODO ?.
-export const Jqa = (domElement) => new JqaClass(domElement)
+export const Jqa = (domElement: HTMLElement | string) => new JqaClass(domElement)
